@@ -1,14 +1,20 @@
 from gtts import gTTS
-from pygame import mixer
+import pyglet, time, os
+pyglet.lib.load_library('avbin')
+pyglet.have_avbin=True
 
-speech = input("What should i say: ")
+def playVoice():
+    voice = pyglet.media.load(f, streaming = False)
+    voice.play()
 
-tts = gTTS(text=speech, lang='en')
-tts.save("message.mp3")
+    time.sleep(voice.duration)
+    os.remove(f)
 
-mixer.init()
-mixer.music.load("message.mp3")
-mixer.music.play()
+for i in range(5):
+        speech = input("What should i say: ")
 
-while mixer.music.get_busy() == True:
-    continue
+        tts = gTTS(text=speech, lang='en')
+        f = "temp.mp3"
+        tts.save(f)
+
+        playVoice()
