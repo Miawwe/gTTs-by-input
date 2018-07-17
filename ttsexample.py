@@ -10,11 +10,10 @@ def playVoice():
     time.sleep(voice.duration)
     os.remove(f)
 
-for i in range(5):
-        speech = input("What should i say: ")
+speech = input("What should i say: ")
 
-        tts = gTTS(text=speech, lang='en')
-        f = "temp.mp3"
-        tts.save(f)
+tts = gTTS(text=speech, lang='en')
+f = "temp.mp3"
+tts.save(f)
 
-        playVoice()
+playVoice()
